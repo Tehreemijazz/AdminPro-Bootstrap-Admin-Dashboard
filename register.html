@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register a new user in AdminPro.">
+
+    <title>Register User | AdminPro</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Apply Saved Theme -->
+    <script>
+        try {
+            const savedTheme = localStorage.getItem("adminProTheme") || "light";
+            document.documentElement.setAttribute("data-bs-theme", savedTheme);
+        } catch (error) {
+            document.documentElement.setAttribute("data-bs-theme", "light");
+        }
+    </script>
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="sidebar" id="desktopSidebar">
+
+        <a href="index.html" class="sidebar-brand">
+
+            <span class="brand-icon">
+                <i class="bi bi-grid-1x2-fill"></i>
+            </span>
+
+            <span class="brand-text">
+                Admin<span>Pro</span>
+            </span>
+
+        </a>
+
+
+        <div class="sidebar-content">
+
+            <p class="sidebar-heading">MAIN MENU</p>
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+
+                <a href="index.html" class="sidebar-link">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="users.html" class="sidebar-link">
+                    <i class="bi bi-people"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="register.html"
+                   class="sidebar-link active"
+                   aria-current="page">
+                    <i class="bi bi-person-plus"></i>
+                    <span>Registration</span>
+                </a>
+
+                <a href="settings.html" class="sidebar-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR FOOTER -->
+        <div class="sidebar-footer">
+
+            <div class="sidebar-user">
+
+                <img
+                    src="https://i.pravatar.cc/100?img=47"
+                    alt="Admin profile"
+                    width="40"
+                    height="40"
+                >
+
+                <div class="sidebar-user-info">
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MOBILE SIDEBAR -->
+    <div
+        class="offcanvas offcanvas-start mobile-sidebar"
+        tabindex="-1"
+        id="mobileSidebar"
+        aria-labelledby="mobileSidebarLabel">
+
+        <div class="offcanvas-header">
+
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">
+                <i class="bi bi-grid-1x2-fill me-2"></i>
+                AdminPro
+            </h5>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close navigation">
+            </button>
+
+        </div>
+
+
+        <div class="offcanvas-body">
+
+            <p class="sidebar-heading">MAIN MENU</p>
+
+            <nav class="sidebar-nav" aria-label="Mobile navigation">
+
+                <a href="index.html" class="sidebar-link">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="users.html" class="sidebar-link">
+                    <i class="bi bi-people"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="register.html"
+                   class="sidebar-link active"
+                   aria-current="page">
+                    <i class="bi bi-person-plus"></i>
+                    <span>Registration</span>
+                </a>
+
+                <a href="settings.html" class="sidebar-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <nav class="navbar top-navbar bg-white px-3 px-md-4"
+             aria-label="Registration toolbar">
+
+
+            <!-- LEFT SIDE -->
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- MOBILE MENU -->
+                <button
+                    class="btn btn-light d-lg-none"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#mobileSidebar"
+                    aria-controls="mobileSidebar"
+                    aria-label="Open navigation">
+
+                    <i class="bi bi-list fs-4"></i>
+
+                </button>
+
+
+                <!-- DESKTOP SIDEBAR COLLAPSE -->
+                <button
+                    class="btn btn-light sidebar-collapse-button d-none d-lg-inline-flex"
+                    id="sidebarCollapseBtn"
+                    type="button"
+                    aria-label="Collapse sidebar"
+                    aria-controls="desktopSidebar"
+                    aria-expanded="true"
+                    title="Collapse sidebar">
+
+                    <i class="bi bi-layout-sidebar-inset"></i>
+
+                </button>
+
+
+                <!-- PAGE TITLE -->
+                <div>
+
+                    <h5 class="mb-0 fw-semibold">Register User</h5>
+
+                    <small class="text-muted">
+                        Add a new member to your workspace
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="d-flex align-items-center gap-2 gap-md-3">
+
+
+                <!-- THEME TOGGLE -->
+                <button
+                    class="btn btn-light theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch theme"
+                    title="Switch theme">
+
+                    <i class="bi bi-moon-stars" id="themeIcon"></i>
+
+                </button>
+
+
+                <!-- NOTIFICATION DROPDOWN -->
+                <div class="dropdown">
+
+                    <button
+                        class="btn btn-light position-relative"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        aria-label="Open notifications">
+
+                        <i class="bi bi-bell"></i>
+
+                        <span class="notification-dot"
+                              aria-label="Unread notifications"></span>
+
+                    </button>
+
+
+                    <div class="dropdown-menu dropdown-menu-end notification-menu p-0">
+
+                        <div class="notification-header">
+                            <strong>Notifications</strong>
+                        </div>
+
+
+                        <div class="notification-item unread">
+
+                            <i class="bi bi-person-plus text-primary"></i>
+
+                            <div>
+                                <strong>New user registered</strong>
+                                <small>A new member joined your workspace.</small>
+                                <span>Just now</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="notification-item">
+
+                            <i class="bi bi-shield-check text-success"></i>
+
+                            <div>
+                                <strong>Security update</strong>
+                                <small>Your account settings are up to date.</small>
+                                <span>1 hour ago</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADMIN DROPDOWN -->
+                <div class="dropdown">
+
+                    <button
+                        class="btn top-user dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        aria-label="Open administrator menu">
+
+                        <span class="top-user-avatar">A</span>
+
+                        <span class="d-none d-sm-inline">Admin</span>
+
+                    </button>
+
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a class="dropdown-item" href="settings.html">
+                                <i class="bi bi-person me-2"></i>
+                                My Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="settings.html">
+                                <i class="bi bi-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <button
+                                class="dropdown-item logout-button"
+                                type="button">
+
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Logout
+
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="dashboard-content">
+
+
+            <!-- BACK LINK -->
+            <div class="mb-4">
+
+                <a href="users.html" class="text-decoration-none small">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Back to Users
+
+                </a>
+
+            </div>
+
+
+            <!-- REGISTRATION CARD -->
+            <div class="registration-card mx-auto">
+
+
+                <!-- CARD HEADING -->
+                <div class="registration-heading">
+
+                    <div class="registration-icon">
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+
+                    <h2>Create New Account</h2>
+
+                    <p>
+                        Enter the information below to register a new user.
+                    </p>
+
+                </div>
+
+
+                <!-- REGISTRATION FORM -->
+                <form id="registrationForm" novalidate>
+
+
+                    <!-- PROFILE IMAGE -->
+                    <div class="text-center mb-4">
+
+                        <div class="profile-image-preview mx-auto mb-2">
+
+                            <img
+                                id="imagePreview"
+                                src="https://placehold.co/120x120/e9eaf0/777?text=Photo"
+                                alt="Selected profile preview">
+
+                        </div>
+
+
+                        <label for="profileImage"
+                               class="btn btn-outline-primary btn-sm">
+
+                            <i class="bi bi-camera me-1"></i>
+                            Upload Photo
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            class="visually-hidden"
+                            id="profileImage"
+                            accept="image/png,image/jpeg,image/webp">
+
+
+                        <div class="form-text">
+                            Optional. JPG, PNG or WEBP. Maximum 2 MB.
+                        </div>
+
+
+                        <div
+                            class="invalid-feedback d-block"
+                            id="imageError">
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-3">
+
+
+                        <!-- FULL NAME -->
+                        <div class="col-md-6">
+
+                            <label for="fullName" class="form-label">
+                                Full Name *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="fullName"
+                                placeholder="Enter full name"
+                                required
+                                minlength="3"
+                                maxlength="60">
+
+                            <div class="invalid-feedback">
+                                Enter a name containing at least 3 characters.
+                            </div>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+                        <div class="col-md-6">
+
+                            <label for="email" class="form-label">
+                                Email Address *
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="example@email.com"
+                                required>
+
+                            <div class="invalid-feedback">
+                                Enter a valid email address.
+                            </div>
+
+                        </div>
+
+
+                        <!-- PHONE -->
+                        <div class="col-md-6">
+
+                            <label for="phone" class="form-label">
+                                Phone Number *
+                            </label>
+
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="phone"
+                                placeholder="+92 300 1234567"
+                                pattern="[0-9+\-\s()]{7,20}"
+                                required>
+
+                            <div class="invalid-feedback">
+                                Enter a valid phone number.
+                            </div>
+
+                        </div>
+
+
+                        <!-- GENDER -->
+                        <div class="col-md-6">
+
+                            <label for="gender" class="form-label">
+                                Gender *
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="gender"
+                                required>
+
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                                <option value="Prefer not to say">
+                                    Prefer not to say
+                                </option>
+
+                            </select>
+
+                            <div class="invalid-feedback">
+                                Please select a gender.
+                            </div>
+
+                        </div>
+
+
+                        <!-- DEPARTMENT -->
+                        <div class="col-md-6">
+
+                            <label for="department" class="form-label">
+                                Department *
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="department"
+                                required>
+
+                                <option value="">Select department</option>
+                                <option value="Development">Development</option>
+                                <option value="Design">Design</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Human Resources">
+                                    Human Resources
+                                </option>
+                                <option value="Finance">Finance</option>
+                                <option value="Support">Support</option>
+
+                            </select>
+
+                            <div class="invalid-feedback">
+                                Please select a department.
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+                        <div class="col-md-6">
+
+                            <label for="password" class="form-label">
+                                Password *
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="Create password"
+                                    minlength="8"
+                                    required>
+
+                                <button
+                                    class="btn btn-outline-secondary password-toggle"
+                                    type="button"
+                                    data-target="password"
+                                    aria-label="Show password">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div class="form-text">
+                                At least 8 characters, including a letter and a number.
+                            </div>
+
+                            <div class="invalid-feedback" id="passwordError">
+                                Use at least 8 characters with a letter and a number.
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+                        <div class="col-md-6">
+
+                            <label for="confirmPassword" class="form-label">
+                                Confirm Password *
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="confirmPassword"
+                                    placeholder="Confirm password"
+                                    required>
+
+                                <button
+                                    class="btn btn-outline-secondary password-toggle"
+                                    type="button"
+                                    data-target="confirmPassword"
+                                    aria-label="Show confirm password">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div class="invalid-feedback" id="confirmPasswordError">
+                                Passwords do not match.
+                            </div>
+
+                        </div>
+
+
+                        <!-- TERMS -->
+                        <div class="col-12 mt-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="terms"
+                                    required>
+
+                                <label class="form-check-label" for="terms">
+                                    I agree to the terms and conditions.
+                                </label>
+
+                                <div class="invalid-feedback">
+                                    You must accept the terms before registering.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+                        <div class="col-12 mt-4">
+
+                            <div class="d-flex flex-column flex-sm-row gap-2">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary flex-grow-1"
+                                    id="registerButton">
+
+                                    <i class="bi bi-person-check me-2"></i>
+                                    Register User
+
+                                </button>
+
+
+                                <button
+                                    type="reset"
+                                    class="btn btn-outline-secondary">
+
+                                    <i class="bi bi-arrow-counterclockwise me-1"></i>
+                                    Reset Form
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div
+        id="appToast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true">
+
+        <div class="toast-header">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            <strong class="me-auto" id="toastTitle">
+                AdminPro
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close">
+            </button>
+
+        </div>
+
+        <div class="toast-body" id="toastMessage">
+            Action completed.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- PROJECT JS -->
+<script src="js/app.js"></script>
+<script src="js/registration.js"></script>
+
+</body>
+</html>

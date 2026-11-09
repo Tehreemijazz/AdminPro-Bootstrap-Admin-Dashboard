@@ -1,0 +1,148 @@
+
+/* =================================
+   DASHBOARD RESPONSIVE DESIGN
+================================= */
+
+/* Large screens */
+@media (max-width: 1199.98px) {
+
+    .dashboard-content {
+        padding: 24px;
+    }
+
+    .stat-number {
+        font-size: 25px;
+    }
+}
+
+/* Tablet and mobile */
+@media (max-width: 991.98px) {
+
+    .sidebar {
+        display: none !important;
+    }
+
+    .sidebar.collapsed {
+        display: none !important;
+    }
+
+    .main-content,
+    .main-content.expanded {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+    }
+
+    .dashboard-content {
+        padding: 22px;
+    }
+
+    .welcome-icon {
+        font-size: 75px;
+    }
+
+    /* Hide desktop collapse control */
+    .sidebar-collapse-button {
+        display: none !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+
+    .top-navbar {
+        min-height: 65px;
+    }
+
+    .navbar-title {
+        font-size: 16px;
+    }
+
+    .dashboard-content {
+        padding: 18px 14px;
+    }
+
+    .welcome-card .card-body {
+        padding: 25px 18px !important;
+    }
+
+    .welcome-card h2 {
+        font-size: 21px;
+    }
+
+    .welcome-icon {
+        font-size: 55px;
+    }
+
+    .stat-number {
+        font-size: 24px;
+    }
+
+    .activity-item {
+        flex-wrap: wrap;
+    }
+}
+
+/* Small phones */
+@media (max-width: 575.98px) {
+
+    .dashboard-content {
+        padding: 15px 12px;
+    }
+
+    .top-navbar {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .profile-button {
+        padding: 4px;
+    }
+
+    .activity-item .badge {
+        margin-left: auto;
+    }
+
+    .notification-menu {
+        width: 290px;
+    }
+
+    #dashboardAccordion .accordion-button {
+        font-size: 13px;
+        padding: 13px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+
+    .sidebar {
+        display: flex !important;
+    }
+
+    .sidebar-collapse-button {
+        display: inline-flex;
+    }
+}
+
+/* =================================
+   RESPONSIVE NAVIGATION FIX
+================================= */
+
+@media (max-width: 991.98px) {
+    .sidebar-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar-collapse-button {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar-toggle {
+        display: none !important;
+    }
+}

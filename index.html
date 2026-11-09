@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AdminPro dashboard for managing users, activities, and platform settings.">
+
+    <title>AdminPro | Dashboard</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Apply saved theme before page rendering -->
+    <script>
+        try {
+            const savedTheme = localStorage.getItem("adminProTheme") || "light";
+            document.documentElement.setAttribute("data-bs-theme", savedTheme);
+        } catch (error) {
+            document.documentElement.setAttribute("data-bs-theme", "light");
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- DESKTOP SIDEBAR -->
+        <aside class="sidebar" id="desktopSidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="bi bi-grid-1x2-fill" aria-hidden="true"></i>
+                </div>
+
+                <span class="brand-text">
+                    Admin<span>Pro</span>
+                </span>
+            </div>
+
+            <div class="sidebar-content">
+
+                <p class="sidebar-heading">MAIN MENU</p>
+
+                <nav class="sidebar-nav" aria-label="Main navigation">
+
+                    <a href="index.html"
+                       class="sidebar-link active"
+                       aria-current="page">
+                        <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="users.html" class="sidebar-link">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        <span>User Management</span>
+                    </a>
+
+                    <a href="register.html" class="sidebar-link">
+                        <i class="bi bi-person-plus" aria-hidden="true"></i>
+                        <span>Registration</span>
+                    </a>
+
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="bi bi-gear" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </a>
+
+                </nav>
+
+                <p class="sidebar-heading mt-4">OTHER</p>
+
+                <nav class="sidebar-nav" aria-label="Additional navigation">
+
+                    <a href="#help"
+                       class="sidebar-link"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="right"
+                       title="Help and support">
+                        <i class="bi bi-question-circle" aria-hidden="true"></i>
+                        <span>Help Center</span>
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+
+                    <img
+                        src="https://i.pravatar.cc/100?img=47"
+                        alt="Admin profile"
+                        width="40"
+                        height="40"
+                    >
+
+                    <div class="sidebar-user-info">
+                        <strong>Admin User</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+
+            <!-- TOP NAVBAR -->
+            <nav class="navbar top-navbar bg-white px-3 px-md-4"
+                 aria-label="Dashboard toolbar">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <!-- Mobile navigation -->
+                    <button
+                        class="btn btn-light d-lg-none"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#mobileSidebar"
+                        aria-controls="mobileSidebar"
+                        aria-label="Open navigation"
+                    >
+                        <i class="bi bi-list fs-4" aria-hidden="true"></i>
+                    </button>
+
+                    <!-- Desktop sidebar collapse -->
+                    <button
+                        class="btn btn-light sidebar-collapse-button d-none d-lg-inline-flex"
+                        id="sidebarCollapseBtn"
+                        type="button"
+                        aria-label="Collapse sidebar"
+                        aria-expanded="true"
+                        title="Collapse sidebar"
+                    >
+                        <i class="bi bi-layout-sidebar-inset"
+                           aria-hidden="true"></i>
+                    </button>
+
+                   <div>
+                        <h5 class="mb-0 fw-semibold">Dashboard</h5>
+                        <small class="text-muted">Welcome to AdminPro</small>
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex align-items-center gap-2 gap-md-3">
+
+                    <!-- Theme Toggle -->
+                    <button
+                        class="btn btn-light theme-toggle"
+                        id="themeToggle"
+                        type="button"
+                        aria-label="Switch to dark mode"
+                        title="Switch theme"
+                    >
+                        <i class="bi bi-moon-stars"
+                           id="themeIcon"
+                           aria-hidden="true"></i>
+                    </button>
+
+
+                    <!-- Notification Dropdown -->
+                    <div class="dropdown">
+
+                        <button
+                            class="btn btn-light position-relative"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Open notifications"
+                        >
+                            <i class="bi bi-bell" aria-hidden="true"></i>
+                            <span class="notification-dot"
+                                  aria-label="Unread notifications"></span>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-end notification-menu p-0">
+
+                            <div class="notification-header">
+                                <strong>Notifications</strong>
+
+                                <button
+                                    class="btn btn-link btn-sm"
+                                    type="button"
+                                    id="markAllRead"
+                                >
+                                    Mark all read
+                                </button>
+                            </div>
+
+                            <div class="notification-item unread"
+                                 role="group"
+                                 aria-label="New user notification">
+
+                                <i class="bi bi-person-plus text-primary"
+                                   aria-hidden="true"></i>
+
+                                <div>
+                                    <strong>New user registered</strong>
+                                    <small>A new member joined your workspace.</small>
+                                    <span>Just now</span>
+                                </div>
+
+                            </div>
+
+                            <div class="notification-item unread"
+                                 role="group"
+                                 aria-label="Security notification">
+
+                                <i class="bi bi-shield-check text-success"
+                                   aria-hidden="true"></i>
+
+                                <div>
+                                    <strong>Security update</strong>
+                                    <small>Your account settings are up to date.</small>
+                                    <span>1 hour ago</span>
+                                </div>
+
+                            </div>
+
+                            <div class="notification-item"
+                                 role="group"
+                                 aria-label="Weekly report notification">
+
+                                <i class="bi bi-graph-up text-info"
+                                   aria-hidden="true"></i>
+
+                                <div>
+                                    <strong>Weekly report</strong>
+                                    <small>Your weekly activity report is ready.</small>
+                                    <span>Yesterday</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Admin Profile Dropdown -->
+                    <div class="dropdown">
+
+                        <button
+                            class="btn top-user dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Open administrator menu"
+                        >
+                            <span class="top-user-avatar" aria-hidden="true">A</span>
+                            <span class="d-none d-sm-inline">Admin</span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li>
+                                <a class="dropdown-item" href="settings.html">
+                                    <i class="bi bi-person me-2"
+                                       aria-hidden="true"></i>
+                                    My Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="settings.html">
+                                    <i class="bi bi-gear me-2"
+                                       aria-hidden="true"></i>
+                                    Settings
+                                </a>
+                            </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <button
+                                    class="dropdown-item logout-button"
+                                    type="button"
+                                >
+                                    <i class="bi bi-box-arrow-right me-2"
+                                       aria-hidden="true"></i>
+                                    Logout
+                                </button>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+
+            <!-- MOBILE OFFCANVAS SIDEBAR -->
+            <div
+                class="offcanvas offcanvas-start mobile-sidebar"
+                tabindex="-1"
+                id="mobileSidebar"
+                aria-labelledby="mobileSidebarLabel"
+            >
+
+                <div class="offcanvas-header">
+
+                    <h5 class="offcanvas-title" id="mobileSidebarLabel">
+                        <i class="bi bi-grid-1x2-fill me-2"
+                           aria-hidden="true"></i>
+                        AdminPro
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close navigation"
+                    ></button>
+
+                </div>
+
+                <div class="offcanvas-body">
+
+                    <p class="sidebar-heading">MAIN MENU</p>
+
+                    <nav class="sidebar-nav" aria-label="Mobile navigation">
+
+                        <a href="index.html"
+                           class="sidebar-link active"
+                           aria-current="page">
+                            <i class="bi bi-speedometer2"
+                               aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+
+                        <a href="users.html" class="sidebar-link">
+                            <i class="bi bi-people" aria-hidden="true"></i>
+                            <span>User Management</span>
+                        </a>
+
+                        <a href="register.html" class="sidebar-link">
+                            <i class="bi bi-person-plus"
+                               aria-hidden="true"></i>
+                            <span>Registration</span>
+                        </a>
+
+                        <a href="settings.html" class="sidebar-link">
+                            <i class="bi bi-gear" aria-hidden="true"></i>
+                            <span>Settings</span>
+                        </a>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD MAIN -->
+            <main class="dashboard-content">
+
+                <!-- PAGE HEADING -->
+                <section class="d-flex flex-wrap justify-content-between
+                                align-items-center section-spacing">
+
+                    <div>
+                        <h1 class="page-title">Dashboard Overview</h1>
+
+                        <p class="page-subtitle mb-0">
+                            Monitor your platform activities and users.
+                        </p>
+                    </div>
+
+                    <div class="text-muted small mt-2 mt-md-0">
+                        <i class="bi bi-calendar3 me-1"
+                           aria-hidden="true"></i>
+                        <span id="currentDate"></span>
+                    </div>
+
+                </section>
+
+
+                <!-- WELCOME BANNER -->
+                <section class="card welcome-card section-spacing"
+                         aria-labelledby="welcomeHeading">
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-8">
+
+                                <h2 class="h3 fw-bold" id="welcomeHeading">
+                                    Welcome back, Admin!
+                                    <span aria-hidden="true">👋</span>
+                                </h2>
+
+                                <p class="mb-3">
+                                    Here's what's happening with your
+                                    platform today. Manage users, monitor
+                                    activities and keep everything organized.
+                                </p>
+
+                                <a href="users.html"
+                                   class="btn btn-light text-primary fw-semibold">
+
+                                    <i class="bi bi-people me-2"
+                                       aria-hidden="true"></i>
+                                    Manage Users
+
+                                </a>
+
+                            </div>
+
+                            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+
+                                <i class="bi bi-bar-chart-line-fill welcome-icon"
+                                   aria-hidden="true"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STATISTICS CARDS -->
+                <section class="section-spacing"
+                         aria-label="User statistics">
+
+                    <div class="row g-3 g-md-4">
+
+                        <!-- Total Users -->
+                        <div class="col-12 col-sm-6 col-xl-3">
+
+                            <div class="card stat-card h-100">
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+                                            <p class="stat-label">Total Users</p>
+                                            <h3 class="stat-number"
+                                                id="totalUsers"
+                                                aria-live="polite">0</h3>
+                                        </div>
+
+                                        <div class="stat-icon icon-purple">
+                                            <i class="bi bi-people-fill"
+                                               aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="stat-footer text-success mb-0">
+                                        <i class="bi bi-arrow-up-right"
+                                           aria-hidden="true"></i>
+                                        12.5% this month
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Active Users -->
+                        <div class="col-12 col-sm-6 col-xl-3">
+
+                            <div class="card stat-card h-100">
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+                                            <p class="stat-label">Active Users</p>
+                                            <h3 class="stat-number"
+                                                id="activeUsers"
+                                                aria-live="polite">0</h3>
+                                        </div>
+
+                                        <div class="stat-icon icon-green">
+                                            <i class="bi bi-person-check-fill"
+                                               aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="stat-footer text-success mb-0">
+                                        <i class="bi bi-arrow-up-right"
+                                           aria-hidden="true"></i>
+                                        8.2% this month
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Pending Users -->
+                        <div class="col-12 col-sm-6 col-xl-3">
+
+                            <div class="card stat-card h-100">
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+                                            <p class="stat-label">Pending Users</p>
+                                            <h3 class="stat-number"
+                                                id="pendingUsers"
+                                                aria-live="polite">0</h3>
+                                        </div>
+
+                                        <div class="stat-icon icon-orange">
+                                            <i class="bi bi-hourglass-split"
+                                               aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="stat-footer text-warning mb-0">
+                                        <i class="bi bi-clock"
+                                           aria-hidden="true"></i>
+                                        Awaiting approval
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Inactive Users -->
+                        <div class="col-12 col-sm-6 col-xl-3">
+
+                            <div class="card stat-card h-100">
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+                                            <p class="stat-label">Inactive Users</p>
+                                            <h3 class="stat-number"
+                                                id="inactiveUsers"
+                                                aria-live="polite">0</h3>
+                                        </div>
+
+                                        <div class="stat-icon icon-red">
+                                            <i class="bi bi-person-x-fill"
+                                               aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="stat-footer text-danger mb-0">
+                                        <i class="bi bi-arrow-down-right"
+                                           aria-hidden="true"></i>
+                                        Requires attention
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- RECENT ACTIVITIES AND PROGRESS -->
+                <section class="section-spacing"
+                         aria-label="Recent activity and user progress">
+
+                    <div class="row g-4">
+
+                        <!-- Recent Activities -->
+                        <div class="col-12 col-xl-7">
+
+                            <div class="card h-100">
+
+                                <div class="card-header p-3 d-flex
+                                            justify-content-between
+                                            align-items-center">
+
+                                    <h2 class="h5 mb-0 fw-semibold">
+                                        Recent Activities
+                                    </h2>
+
+                                    <button
+                                        class="btn btn-sm btn-outline-primary"
+                                        id="viewActivitiesButton"
+                                        type="button"
+                                    >
+                                        View All
+                                    </button>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="activity-item d-flex gap-3">
+
+                                        <img
+                                            src="https://i.pravatar.cc/100?img=12"
+                                            class="user-avatar"
+                                            alt="Sarah Johnson"
+                                            width="40"
+                                            height="40"
+                                        >
+
+                                        <div class="flex-grow-1">
+                                            <p class="mb-1">
+                                                <strong>Sarah Johnson</strong>
+                                                registered a new account.
+                                            </p>
+
+                                            <small class="text-muted-custom">
+                                                <i class="bi bi-clock me-1"
+                                                   aria-hidden="true"></i>
+                                                10 minutes ago
+                                            </small>
+                                        </div>
+
+                                        <span class="badge text-bg-success align-self-start">
+                                            Completed
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="activity-item d-flex gap-3">
+
+                                        <img
+                                            src="https://i.pravatar.cc/100?img=33"
+                                            class="user-avatar"
+                                            alt="Michael Smith"
+                                            width="40"
+                                            height="40"
+                                        >
+
+                                        <div class="flex-grow-1">
+                                            <p class="mb-1">
+                                                <strong>Michael Smith</strong>
+                                                updated his profile.
+                                            </p>
+
+                                            <small class="text-muted-custom">
+                                                <i class="bi bi-clock me-1"
+                                                   aria-hidden="true"></i>
+                                                35 minutes ago
+                                            </small>
+                                        </div>
+
+                                        <span class="badge text-bg-info align-self-start">
+                                            Updated
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="activity-item d-flex gap-3">
+
+                                        <img
+                                            src="https://i.pravatar.cc/100?img=44"
+                                            class="user-avatar"
+                                            alt="Emily Davis"
+                                            width="40"
+                                            height="40"
+                                        >
+
+                                        <div class="flex-grow-1">
+                                            <p class="mb-1">
+                                                <strong>Emily Davis</strong>
+                                                requested account approval.
+                                            </p>
+
+                                            <small class="text-muted-custom">
+                                                <i class="bi bi-clock me-1"
+                                                   aria-hidden="true"></i>
+                                                1 hour ago
+                                            </small>
+                                        </div>
+
+                                        <span class="badge text-bg-warning align-self-start">
+                                            Pending
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="activity-item d-flex gap-3">
+
+                                        <img
+                                            src="https://i.pravatar.cc/100?img=68"
+                                            class="user-avatar"
+                                            alt="James Wilson"
+                                            width="40"
+                                            height="40"
+                                        >
+
+                                        <div class="flex-grow-1">
+                                            <p class="mb-1">
+                                                <strong>James Wilson</strong>
+                                                account was deactivated.
+                                            </p>
+
+                                            <small class="text-muted-custom">
+                                                <i class="bi bi-clock me-1"
+                                                   aria-hidden="true"></i>
+                                                2 hours ago
+                                            </small>
+                                        </div>
+
+                                        <span class="badge text-bg-danger align-self-start">
+                                            Inactive
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- User Statistics -->
+                        <div class="col-12 col-xl-5">
+
+                            <div class="card h-100">
+
+                                <div class="card-header p-3">
+                                    <h2 class="h5 mb-0 fw-semibold">
+                                        User Statistics
+                                    </h2>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <!-- Active -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Active Users</span>
+                                        <strong id="activePercentage">0%</strong>
+                                    </div>
+
+                                    <div
+                                        class="progress mb-4"
+                                        role="progressbar"
+                                        aria-label="Active users"
+                                        aria-valuenow="0"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        id="activeProgress"
+                                    >
+                                        <div
+                                            class="progress-bar bg-success"
+                                            id="activeProgressBar"
+                                            style="width: 0%">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Pending -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Pending Users</span>
+                                        <strong id="pendingPercentage">0%</strong>
+                                    </div>
+
+                                    <div
+                                        class="progress mb-4"
+                                        role="progressbar"
+                                        aria-label="Pending users"
+                                        aria-valuenow="0"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        id="pendingProgress"
+                                    >
+                                        <div
+                                            class="progress-bar bg-warning"
+                                            id="pendingProgressBar"
+                                            style="width: 0%">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Inactive -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Inactive Users</span>
+                                        <strong id="inactivePercentage">0%</strong>
+                                    </div>
+
+                                    <div
+                                        class="progress mb-4"
+                                        role="progressbar"
+                                        aria-label="Inactive users"
+                                        aria-valuenow="0"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        id="inactiveProgress"
+                                    >
+                                        <div
+                                            class="progress-bar bg-danger"
+                                            id="inactiveProgressBar"
+                                            style="width: 0%">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="alert alert-light border mb-0">
+                                        <i class="bi bi-info-circle text-primary me-2"
+                                           aria-hidden="true"></i>
+
+                                        Statistics are calculated from
+                                        registered user records.
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FAQ ACCORDION -->
+                <section class="section-spacing"
+                         aria-labelledby="faqHeading">
+
+                    <div class="mb-3">
+                        <h2 class="h5 fw-semibold" id="faqHeading">
+                            Frequently Asked Questions
+                        </h2>
+
+                        <p class="page-subtitle">
+                            Quick information about managing your dashboard.
+                        </p>
+                    </div>
+
+                    <div class="accordion" id="dashboardAccordion">
+
+                        <div class="accordion-item">
+
+                            <h3 class="accordion-header">
+                                <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faqOne"
+                                    aria-expanded="true"
+                                    aria-controls="faqOne"
+                                >
+                                    How can I register a new user?
+                                </button>
+                            </h3>
+
+                            <div
+                                id="faqOne"
+                                class="accordion-collapse collapse show"
+                                data-bs-parent="#dashboardAccordion"
+                            >
+                                <div class="accordion-body">
+                                    Open the Registration page, complete the
+                                    user information, and submit the form.
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item">
+
+                            <h3 class="accordion-header">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faqTwo"
+                                    aria-expanded="false"
+                                    aria-controls="faqTwo"
+                                >
+                                    How can I manage existing users?
+                                </button>
+                            </h3>
+
+                            <div
+                                id="faqTwo"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#dashboardAccordion"
+                            >
+                                <div class="accordion-body">
+                                    Visit User Management to search, filter,
+                                    edit, and delete user records.
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item">
+
+                            <h3 class="accordion-header">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faqThree"
+                                    aria-expanded="false"
+                                    aria-controls="faqThree"
+                                >
+                                    Where can I update my preferences?
+                                </button>
+                            </h3>
+
+                            <div
+                                id="faqThree"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#dashboardAccordion"
+                            >
+                                <div class="accordion-body">
+                                    Open Settings to update your profile,
+                                    account preferences, security options,
+                                    and notifications.
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FOOTER -->
+                <footer class="dashboard-footer">
+
+                    <p class="mb-0">
+                        &copy; 2026 AdminPro. All rights reserved.
+                    </p>
+
+                </footer>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+        <div
+            id="adminToast"
+            class="toast"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+        >
+
+            <div class="toast-header">
+
+                <i class="bi bi-check-circle-fill text-success me-2"
+                   aria-hidden="true"></i>
+
+                <strong class="me-auto">AdminPro</strong>
+
+                <small>Just now</small>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="toast"
+                    aria-label="Close notification"
+                ></button>
+
+            </div>
+
+            <div class="toast-body" id="toastMessage">
+                Welcome to AdminPro!
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOOTSTRAP JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CUSTOM JAVASCRIPT -->
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
